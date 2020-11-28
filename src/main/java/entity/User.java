@@ -22,9 +22,6 @@ public class User {
     @Column(name = "uname", length = 100, unique = true)
     private String username;
 
-    @Column(name = "uname2", length = 100, unique = true)
-    private String username2;
-
     @Column(name = "pwd", length = 200)
     private String password;
 
