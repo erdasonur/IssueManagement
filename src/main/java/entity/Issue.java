@@ -1,10 +1,17 @@
 package entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "issue")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Issue extends BaseEntity{
 
     @Id
@@ -17,6 +24,7 @@ public class Issue extends BaseEntity{
     @Column(name = "details", length = 4000)
     private String details;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date")
     private Date date;
 
