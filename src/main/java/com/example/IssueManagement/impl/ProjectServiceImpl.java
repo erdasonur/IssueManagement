@@ -1,6 +1,8 @@
 package com.example.IssueManagement.impl;
 
+import com.example.IssueManagement.dto.ProjectDto;
 import com.example.IssueManagement.entity.Project;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,22 +15,39 @@ import java.util.List;
 public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository projectRepository;
+    private final ModelMapper modelMapper;
 
-    public ProjectServiceImpl(ProjectRepository projectRepository) {
+    public ProjectServiceImpl(ProjectRepository projectRepository, ModelMapper modelMapper) {
         this.projectRepository = projectRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
-    public Project save(Project project) {
-        if(project.getProjectCode() != null)
-            return projectRepository.save(project);
-        else
+    public ProjectDto save(ProjectDto project) {
+        if(project.getProjectCode() == null)
             throw new IllegalArgumentException("Project code can't be null");
+        Project p = modelMapper.map(project,Project.class);
+        return modelMapper.map(projectRepository.save(p),ProjectDto.class);
     }
 
     @Override
-    public Project getById(Long id) {
-        return projectRepository.getOne(id);
+    public ProjectDto getById(Long id) {
+
+        Project p = projectRepository.getOne(id);
+        return modelMapper.map(p,ProjectDto.class);
+    }
+
+    @Override
+    public ProjectDto update(Long id, ProjectDto projectDto) {
+        Project project = projectRepository.getOne(id);
+        if(project == null)
+            throw new IllegalArgumentException("Project doesn't exist id : " + id);
+        if(project.getProjectCode() == null)
+            throw new IllegalArgumentException("Project code can't be null");
+        project.setProjectCode(projectDto.getProjectCode());
+        project.setProjectName(projectDto.getProjectName());
+        projectRepository.save(project);
+        return modelMapper.map(project, ProjectDto.class);
     }
 
     @Override
@@ -47,8 +66,9 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Boolean delete(Project project) {
-        projectRepository.delete(project);
+    public Boolean delete(ProjectDto project) {
+        Project p = modelMapper.map(project, Project.class);
+        projectRepository.delete(p);
         return true;
     }
 }
