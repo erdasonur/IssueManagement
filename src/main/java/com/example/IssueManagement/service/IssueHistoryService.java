@@ -1,6 +1,6 @@
-package service;
+package com.example.IssueManagement.service;
 
-import entity.IssueHistory;
+import com.example.IssueManagement.entity.IssueHistory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

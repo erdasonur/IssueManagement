@@ -1,7 +1,6 @@
-package entity;
+package com.example.IssueManagement.entity;
 
 import lombok.*;
-import org.apache.catalina.LifecycleState;
 
 import javax.persistence.*;
 import java.util.List;

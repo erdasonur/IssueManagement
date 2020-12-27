@@ -1,4 +1,4 @@
-package entity;
+package com.example.IssueManagement.entity;
 
 public enum IssueStatus {
 

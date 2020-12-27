@@ -1,11 +1,11 @@
-package impl;
+package com.example.IssueManagement.impl;
 
-import entity.Project;
+import com.example.IssueManagement.entity.Project;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import repository.ProjectRepository;
-import service.ProjectService;
+import com.example.IssueManagement.repository.ProjectRepository;
+import com.example.IssueManagement.service.ProjectService;
 
 import java.util.List;
 

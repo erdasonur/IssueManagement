@@ -1,11 +1,11 @@
-package impl;
+package com.example.IssueManagement.impl;
 
-import entity.User;
+import com.example.IssueManagement.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
-import service.UserService;
+import com.example.IssueManagement.repository.UserRepository;
+import com.example.IssueManagement.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

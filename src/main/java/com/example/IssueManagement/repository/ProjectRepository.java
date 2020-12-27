@@ -1,7 +1,8 @@
-package repository;
+package com.example.IssueManagement.repository;
 
-import entity.Project;
+import com.example.IssueManagement.entity.Project;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,7 +14,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     List<Project> getByProjectCodeContains(String projectCode);
 
-    Page<Project> findAll(Page pageable);
+    Page<Project> findAll(Pageable pageable);
 
     List<Project> findAll(Sort sort);
 }

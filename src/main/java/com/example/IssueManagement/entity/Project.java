@@ -1,4 +1,4 @@
-package entity;
+package com.example.IssueManagement.entity;
 
 
 import lombok.*;
@@ -18,11 +18,11 @@ public class Project extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "project-code", unique = true)
-    private String projectCode;
-
-    @Column(name = "project-name", length = 1000)
+    @Column(name = "project-name", length = 300)
     private String projectName;
+
+    @Column(name = "project-code", length = 30)
+    private String projectCode;
 
     @JoinColumn(name = "manager_user_id")
     @ManyToOne(optional = true, fetch = FetchType.LAZY)

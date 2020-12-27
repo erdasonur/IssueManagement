@@ -1,22 +1,23 @@
-package entity;
+package com.example.IssueManagement.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Entity
-@Table(name = "issue")
+@Table(name = "issue_history")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class Issue extends BaseEntity{
+public class IssueHistory extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     @Column(name = "description", length = 1000)
     private String description;
@@ -31,6 +32,10 @@ public class Issue extends BaseEntity{
     @Column(name = "issue_status")
     @Enumerated(EnumType.STRING)
     private IssueStatus issueStatus;
+
+    @JoinColumn(name = "issue_id")
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    private Issue issue;
 
     @JoinColumn(name = "assignee_user_id")
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
