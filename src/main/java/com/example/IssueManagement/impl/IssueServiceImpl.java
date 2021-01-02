@@ -1,7 +1,10 @@
 package com.example.IssueManagement.impl;
 
 import com.example.IssueManagement.dto.IssueDto;
+import com.example.IssueManagement.dto.ProjectDto;
+import com.example.IssueManagement.dto.UserDto;
 import com.example.IssueManagement.entity.Issue;
+import com.example.IssueManagement.entity.IssueStatus;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +14,7 @@ import com.example.IssueManagement.service.IssueService;
 import com.example.IssueManagement.util.TPage;
 
 import java.util.Arrays;
+import java.util.Date;
 
 
 @Service
@@ -41,6 +45,22 @@ public class IssueServiceImpl implements IssueService {
     }
 
     @Override
+    public IssueDto update(Long id, IssueDto issueDto) {
+        Issue issue = issueRepository.getOne(id);
+        if(issue == null)//test yap olmayan id gonder
+        {
+            throw new IllegalArgumentException("Issue doesn't exist with given id : " + id);
+        }
+        issue.setDescription(issueDto.getDescription());
+        issue.setDetails(issueDto.getDetails());
+        issue.setDate(issueDto.getDate());
+        issue.setIssueStatus(issueDto.getIssueStatus());
+        issueRepository.save(issue);
+        IssueDto issueDto1 = modelMapper.map(issue,IssueDto.class);
+        return issueDto;
+    }
+
+    @Override
     public TPage<IssueDto> getAllPageable(Pageable pageable) {
 
 
@@ -52,7 +72,8 @@ public class IssueServiceImpl implements IssueService {
     }
 
     @Override
-    public Boolean delete(IssueDto issue) {
+    public Boolean delete(Long id) {
+        Issue issue = issueRepository.getOne(id);
         Issue issueDb = modelMapper.map(issue,Issue.class);
         issueRepository.delete(issueDb);
         return true;
