@@ -18,7 +18,7 @@ public class IssueManagementApplication {
 	public ModelMapper getModelMapper(){
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		return new ModelMapper();
+		return modelMapper;
 	}
 
 }
