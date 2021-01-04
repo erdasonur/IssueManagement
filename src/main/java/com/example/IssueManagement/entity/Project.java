@@ -18,10 +18,10 @@ public class Project extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "project-name", length = 300)
+    @Column(name = "project_name", length = 300)
     private String projectName;
 
-    @Column(name = "project-code", length = 30)
+    @Column(name = "project_code", length = 30)
     private String projectCode;
 
     @JoinColumn(name = "manager_user_id")
