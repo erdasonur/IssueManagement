@@ -1,0 +1,17 @@
+[
+  {
+    "_class": "com.example.IssueManagement.entity.Project",
+    "projectCode": "IM",
+    "projectName": "Issue Management"
+  },
+  {
+    "_class": "com.example.IssueManagement.entity.Project",
+    "projectCode": "FKL",
+    "projectName": "FKL Project"
+  },
+  {
+    "_class": "com.example.IssueManagement.entity.Project",
+    "projectCode": "BML",
+    "projectName": "BML Project"
+  }
+]

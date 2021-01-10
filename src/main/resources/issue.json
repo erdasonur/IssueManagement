@@ -1,0 +1,23 @@
+[
+  {
+    "_class": "com.example.IssueManagement.entity.Issue",
+    "description": "issueDesc",
+    "details": "issueDetails",
+    "date": "2019-04-28T14:45:15",
+    "issueStatus": "OPEN"
+  },
+  {
+    "_class": "com.example.IssueManagement.entity.Issue",
+    "description": "issueDesc2",
+    "details": "issueDetails2",
+    "date": "2019-04-28T14:45:16",
+    "issueStatus": "CLOSE"
+  },
+  {
+    "_class": "com.example.IssueManagement.entity.Issue",
+    "description": "issueDesc3",
+    "details": "issueDetails3",
+    "date": "2019-04-28T14:45:17",
+    "issueStatus": "IN_REVIEW"
+  }
+]
