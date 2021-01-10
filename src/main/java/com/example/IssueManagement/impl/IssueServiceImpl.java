@@ -1,10 +1,7 @@
 package com.example.IssueManagement.impl;
 
 import com.example.IssueManagement.dto.IssueDto;
-import com.example.IssueManagement.dto.ProjectDto;
-import com.example.IssueManagement.dto.UserDto;
 import com.example.IssueManagement.entity.Issue;
-import com.example.IssueManagement.entity.IssueStatus;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +11,6 @@ import com.example.IssueManagement.service.IssueService;
 import com.example.IssueManagement.util.TPage;
 
 import java.util.Arrays;
-import java.util.Date;
 
 
 @Service

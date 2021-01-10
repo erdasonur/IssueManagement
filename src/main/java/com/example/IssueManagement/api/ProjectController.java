@@ -1,8 +1,6 @@
 package com.example.IssueManagement.api;
 
-import com.example.IssueManagement.dto.IssueDto;
 import com.example.IssueManagement.dto.ProjectDto;
-import com.example.IssueManagement.entity.Project;
 import com.example.IssueManagement.impl.ProjectServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
