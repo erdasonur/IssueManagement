@@ -2,6 +2,7 @@ package com.example.IssueManagement.impl;
 
 import com.example.IssueManagement.dto.ProjectDto;
 import com.example.IssueManagement.entity.Project;
+import com.example.IssueManagement.util.TPage;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.IssueManagement.repository.ProjectRepository;
 import com.example.IssueManagement.service.ProjectService;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -51,8 +53,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Page<Project> getAllPageable(Pageable pageable) {
-        return projectRepository.findAll(pageable);
+    public TPage<ProjectDto> getAllPageable(Pageable pageable) {
+        Page<Project> data = projectRepository.findAll(pageable);
+        TPage<ProjectDto> response = new TPage<ProjectDto>();
+        response.setStat(data, Arrays.asList(modelMapper.map(data.getContent(), ProjectDto[].class)));
+        return response;
     }
 
     @Override

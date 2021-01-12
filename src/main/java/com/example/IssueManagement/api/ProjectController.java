@@ -2,12 +2,15 @@ package com.example.IssueManagement.api;
 
 import com.example.IssueManagement.dto.ProjectDto;
 import com.example.IssueManagement.impl.ProjectServiceImpl;
+import com.example.IssueManagement.util.TPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 
 @RestController
@@ -22,6 +25,14 @@ public class ProjectController {
     public ProjectController(ProjectServiceImpl projectServiceImpl, ModelMapper modelMapper) {
         this.projectServiceImpl = projectServiceImpl;
         this.modelMapper = modelMapper;
+    }
+
+    @ApiOperation(value = "Get By Pagination Operation", response = ProjectDto.class)
+    @GetMapping("/pagination")
+    public ResponseEntity<TPage<ProjectDto>> getAllByPagination(Pageable pageable){
+        log.debug("Project Controller -> GetAllByPagination");
+        TPage<ProjectDto> data = projectServiceImpl.getAllPageable(pageable);
+        return ResponseEntity.ok(data);
     }
 
     @ApiOperation(value = "Get By Id Operation", response = ProjectDto.class)
