@@ -52,13 +52,12 @@ public class IssueServiceImpl implements IssueService {
         issue.setDate(issueDto.getDate());
         issue.setIssueStatus(issueDto.getIssueStatus());
         issueRepository.save(issue);
-        IssueDto issueDto1 = modelMapper.map(issue,IssueDto.class);
-        return issueDto;
+        IssueDto issueData = modelMapper.map(issue,IssueDto.class);
+        return issueData;
     }
 
     @Override
     public TPage<IssueDto> getAllPageable(Pageable pageable) {
-
 
         Page<Issue> data =  issueRepository.findAll(pageable);
         IssueDto[] dtos = modelMapper.map(data.getContent(), IssueDto[].class);
