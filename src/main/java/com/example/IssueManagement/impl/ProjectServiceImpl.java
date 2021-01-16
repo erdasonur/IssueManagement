@@ -55,7 +55,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public TPage<ProjectDto> getAllPageable(Pageable pageable) {
         Page<Project> data = projectRepository.findAll(pageable);
-        TPage<ProjectDto> response = new TPage<ProjectDto>();
+        TPage<ProjectDto> response = new TPage<>();
         response.setStat(data, Arrays.asList(modelMapper.map(data.getContent(), ProjectDto[].class)));
         return response;
     }

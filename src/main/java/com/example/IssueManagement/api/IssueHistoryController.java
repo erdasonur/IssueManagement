@@ -28,7 +28,7 @@ public class IssueHistoryController {
         return ResponseEntity.ok(issueHistoryServiceImpl.getById(issueHistoryId));
     }
 
-    @PostMapping()
+    @PostMapping
     @ApiOperation(value = "Post Operation", response = IssueHistoryDto.class)
     public ResponseEntity<IssueHistoryDto> createIssueHistory(@RequestBody IssueHistoryDto issueHistoryDto){
         log.debug("Create IssueHistory");

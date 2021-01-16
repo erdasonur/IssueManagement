@@ -28,7 +28,7 @@ public class IssueController {
     }
 
     @ApiOperation(value = "Create Operation", response = IssueDto.class)
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<IssueDto> createIssue(@RequestBody IssueDto issueDto){
         log.debug("Issue Controller -> Create");
         return ResponseEntity.ok(issueServiceImpl.save(issueDto));
