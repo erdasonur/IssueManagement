@@ -2,9 +2,11 @@ package com.example.IssueManagement.api;
 
 import com.example.IssueManagement.dto.IssueDto;
 import com.example.IssueManagement.impl.IssueServiceImpl;
+import com.example.IssueManagement.util.TPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,13 @@ public class IssueController {
     public ResponseEntity<IssueDto> getIssue(@PathVariable(value = "id", required = true) Long id){
         log.debug("Issue Controller -> GetById -> PARAM: " +id);
         return ResponseEntity.ok(issueServiceImpl.getById(id));
+    }
+
+    @ApiOperation(value = "Get All By Pageable Operation", response = TPage.class)
+    @GetMapping("/pagination")
+    public ResponseEntity<TPage<IssueDto>> getIssue(Pageable pageable){
+        log.debug("Issue Controller -> GetAllByPageable -> PARAM: " + pageable);
+        return ResponseEntity.ok(issueServiceImpl.getAllPageable(pageable));
     }
 
     @ApiOperation(value = "Create Operation", response = IssueDto.class)

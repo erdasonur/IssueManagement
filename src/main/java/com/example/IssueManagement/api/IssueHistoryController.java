@@ -3,9 +3,11 @@ package com.example.IssueManagement.api;
 
 import com.example.IssueManagement.dto.IssueHistoryDto;
 import com.example.IssueManagement.impl.IssueHistoryServiceImpl;
+import com.example.IssueManagement.util.TPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +28,13 @@ public class IssueHistoryController {
     public ResponseEntity<IssueHistoryDto> getIssueHistory(@PathVariable Long issueHistoryId){
         log.info("IssueHistoryController => GetById Param : " + issueHistoryId);
         return ResponseEntity.ok(issueHistoryServiceImpl.getById(issueHistoryId));
+    }
+
+    @GetMapping("/pagination")
+    @ApiOperation(value = "Get By Id Operation", response = TPage.class)
+    public ResponseEntity<TPage<IssueHistoryDto>> getIssueHistory(Pageable pageable){
+        log.info("IssueHistoryController => GetAllByPageable Param : " + pageable);
+        return ResponseEntity.ok(issueHistoryServiceImpl.getAllPageable(pageable));
     }
 
     @PostMapping
